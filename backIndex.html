@@ -30,6 +30,7 @@
     <input id="rt" type="text" placeholder="Enter russian twist" />
     <input id="rt-old" type="text" placeholder="(3-15) Old: " />
     <br>
+    <button id="backButton">Back</button>
     <button id="createButton">Submit Back Day Data</button>
   </body>
   <script>
@@ -83,6 +84,10 @@
     // Add on click listener to call the create parse user function
     document.getElementById("createButton").addEventListener("click", async function () {
       createParseChest();
+    });
+    
+     document.getElementById("backButton").addEventListener("click", async function () {
+      document.location.href = "LandingPage.html";
     });
   </script>
 </html>
