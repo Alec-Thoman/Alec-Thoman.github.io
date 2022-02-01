@@ -27,6 +27,7 @@
     <input id="scr" type="text" placeholder="Enter suitcase crunch" />
     <input id="scr-old" type="text" placeholder="(3-12) Old: " />
     <br>
+    <button id="backButton">Back</button>
     <button id="createButton">Submit Chest Day Data</button>
   </body>
   <script>
@@ -68,6 +69,10 @@
     // Add on click listener to call the create parse user function
     document.getElementById("createButton").addEventListener("click", async function () {
       createParseChest();
+    });
+    
+    document.getElementById("backButton").addEventListener("click", async function () {
+      document.location.href = "LandingPage.html";
     });
   </script>
 </html>
