@@ -54,7 +54,7 @@
       let chest = new Parse.User();
       // Set the input values to the new "Chest" object
       chest.set("username", "AlecT"+ generate_random_string(2));
-      chest.set("email", "alecthoman@aol.com");
+      chest.set("email", generate_random_string(9)+"@aol.com");
       chest.set("password", "Password1");
       chest.set("lp", document.getElementById("lp").value);
       chest.set("udr", document.getElementById("udr").value);
