@@ -1,0 +1,62 @@
+!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- This is the minified production version of parse js -->
+    <script
+      type="text/javascript"
+      src="https://npmcdn.com/parse/dist/parse.min.js"
+    ></script>
+  </head>
+  <body>
+    <h1>GYM LOG</h1>
+    <input id="bbp" type="text" placeholder="Enter barbell bench press" />
+    <input id="ibp" type="text" placeholder="Enter incline bench press" />
+    <input id="mcf" type="text" placeholder="Enter machine chest fly" />
+    <input id="sc" type="text" placeholder="Enter skull crusher" />
+    <input id="tp" type="text" placeholder="Enter tricep pushdown" />
+    <input id="scr" type="text" placeholder="Enter suitcase crunch" />
+    <button id="createButton">Submit Chest Day Data</button>
+  </body>
+  <script>
+    // Initialize Parse
+    Parse.initialize('bEs0Pjne8x372x0E0M0en8771zlDpSIonfYJmix8','rLXvVMcex8RmiLqroSkW0IMN6h1OlW8J5HOj0KpL'); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+    Parse.serverURL = "https://parseapi.back4app.com/";
+
+    // Create a new User
+    async function createParseChest() {
+      // Creates a new Parse "Chest" object, which is created by default in your Parse app
+      let chest = new Parse.User();
+      // Set the input values to the new "Chest" object
+      chest.set("username", "AlecT");
+      chest.set("email", "alecthoman@aol.com");
+      chest.set("password", "Password1");
+      chest.set("bbp", document.getElementById("bbp").value);
+      chest.set("ibp", document.getElementById("ibp").value);
+      chest.set("mcf", document.getElementById("mcf").value);
+      chest.set("sc", document.getElementById("sc").value);
+      chest.set("tp", document.getElementById("tp").value);
+      chest.set("scr", document.getElementById("scr").value);
+
+      try {
+        // Call the save method, which returns the saved object if successful
+        chest = await chest.save();
+        if (chest !== null) {
+          // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+          alert(
+            `New object created with success! ObjectId: ${
+              chest.id
+            }, ${chest.get("bbp")}`
+          );
+        }
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    }
+
+    // Add on click listener to call the create parse user function
+    document.getElementById("createButton").addEventListener("click", async function () {
+      createParseChest();
+    });
+  </script>
+</html>
