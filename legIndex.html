@@ -27,6 +27,7 @@
     <input id="mcr" type="text" placeholder="Enter machine calf raise" />
     <input id="mcr-old" type="text" placeholder="(3-12) Old: 130/135" />
     <br>
+    <button id="backButton">Back</button>
     <button id="createButton">Submit Leg Day Data</button>
   </body>
   <script>
@@ -79,6 +80,10 @@
     // Add on click listener to call the create parse user function
     document.getElementById("createButton").addEventListener("click", async function () {
       createParseChest();
+    });
+    
+    document.getElementById("backButton").addEventListener("click", async function () {
+      document.location.href = "LandingPage.html";
     });
   </script>
 </html>
