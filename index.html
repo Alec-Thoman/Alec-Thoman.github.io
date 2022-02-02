@@ -34,14 +34,24 @@
     // Initialize Parse
     Parse.initialize('bEs0Pjne8x372x0E0M0en8771zlDpSIonfYJmix8','rLXvVMcex8RmiLqroSkW0IMN6h1OlW8J5HOj0KpL'); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
     Parse.serverURL = "https://parseapi.back4app.com/";
+    
+    function generate_random_string(string_length){
+      let random_string = '';
+      let random_ascii;
+      for(let i = 0; i < string_length; i++) {
+        random_ascii = Math.floor((Math.random() * 25) + 97);
+        random_string += String.fromCharCode(random_ascii);
+      }
+      return random_string;
+    }
 
     // Create a new User
     async function createParseChest() {
       // Creates a new Parse "Chest" object, which is created by default in your Parse app
       let chest = new Parse.User();
       // Set the input values to the new "Chest" object
-      chest.set("username", "AlecT");
-      chest.set("email", "alecthoman@aol.com");
+      chest.set("username", "AlecT"+ generate_random_string(2));
+      chest.set("email", generate_random_string(9)+"@aol.com");
       chest.set("password", "Password1");
       chest.set("bbp", document.getElementById("bbp").value);
       chest.set("ibp", document.getElementById("ibp").value);
@@ -75,4 +85,5 @@
       document.location.href = "LandingPage.html";
     });
   </script>
+  <script src="bundle.js"></script>
 </html>
