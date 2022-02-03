@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- This is the minified production version of parse js -->
+    <script
+      type="text/javascript"
+      src="https://npmcdn.com/parse/dist/parse.min.js"
+    ></script>
+    <style>
+      body {text-align: center;}
+    </style>
+    <style>
+      .button {
+        background-color: #ffa500;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+</style>
+  </head>
+  <body>
+    <h1>GYM LOG</h1>
+    <input id="dgs" type="text" placeholder="Enter dumbbell goblet squat" />
+    <label for="dgs">(5-5) Old: 40/50/55</label><br>
+
+    <input id="nlc" type="text" placeholder="Enter nordic leg curl" />
+    <label for="nlc">(3-10) Old: </label><br>
+
+    <input id="dss" type="text" placeholder="dumbbell split squat" />
+    <label for="dss">(4-8) Old: 25</label><br>
+
+    <input id="mlc" type="text" placeholder="Enter machine leg curl" />
+    <label for="mlc">(3-12) Old: 110/120</label><br>
+
+    <input id="mle" type="text" placeholder="Enter machine leg extension" />
+    <label for="mle">(3-12) Old: 90</label><br>
+
+    <input id="mcr" type="text" placeholder="Enter machine calf raise" />
+    <label for="mcr">(3-12) Old: 130/135</label><br>
+
+    <button class="button" id="backButton">Back</button>
+    <button class="button" id="createButton">Submit Leg Day Data</button>
+  </body>
+  <script>
+    // Initialize Parse
+    Parse.initialize('bEs0Pjne8x372x0E0M0en8771zlDpSIonfYJmix8','rLXvVMcex8RmiLqroSkW0IMN6h1OlW8J5HOj0KpL'); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+    Parse.serverURL = "https://parseapi.back4app.com/";
+    
+    function generate_random_string(string_length){
+      let random_string = '';
+      let random_ascii;
+      for(let i = 0; i < string_length; i++) {
+        random_ascii = Math.floor((Math.random() * 25) + 97);
+        random_string += String.fromCharCode(random_ascii);
+      }
+      return random_string;
+    }
+    
+
+    // Create a new User
+    async function createParseChest() {
+      // Creates a new Parse "Chest" object, which is created by default in your Parse app
+      //let chest = new Parse.User();
+      let legObj = Parse.Object.extend("Legs");
+      let chest = new legObj();
+
+
+      // Set the input values to the new "Chest" object
+      //chest.set("username", "AlecT"+ generate_random_string(2));
+      chest.set("username", "AlecT");
+      chest.set("email", generate_random_string(9)+"@aol.com");
+      chest.set("password", "Password1");
+      chest.set("dgs", document.getElementById("dgs").value);
+      chest.set("nlc", document.getElementById("nlc").value);
+      chest.set("dss", document.getElementById("dss").value);
+      chest.set("mlc", document.getElementById("mlc").value);
+      chest.set("mle", document.getElementById("mle").value);
+      chest.set("mcr", document.getElementById("mcr").value);
+
+      try {
+        // Call the save method, which returns the saved object if successful
+        chest = await chest.save();
+        if (chest !== null) {
+          // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+          alert(
+            `New object created with success! ObjectId: ${
+              chest.id
+            }, ${chest.get("dgs")}`
+          );
+        }
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    }
+
+    // Add on click listener to call the create parse user function
+    document.getElementById("createButton").addEventListener("click", async function () {
+      createParseChest();
+    });
+
+    document.getElementById("backButton").addEventListener("click", async function () {
+      document.location.href = "LandingPage.html";
+    });
+
+
+  </script>
+  <script src="legbundle.js" onclick="document.getElementById('createButton')"></script>
+</html>
