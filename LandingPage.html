@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- This is the minified production version of parse js -->
+    <script
+      type="text/javascript"
+      src="https://npmcdn.com/parse/dist/parse.min.js"
+    ></script>
+    <style>
+      body {text-align: center;}
+    </style>
+  </head>
+  <body>
+    <h1>GYM APP</h1>
+    <button id="chestBtn">Chest Day</button>
+    <br>
+    <button id="backBtn">Back Day</button>
+    <br>
+    <button id="legBtn">Leg Day</button>    
+    <br>
+    <button id="armShoulderBtn">Arm/Shoulder Day</button>
+  </body>
+  <script>
+    
+    // Add on click listener to chest
+    document.getElementById("chestBtn").addEventListener("click", async function () {
+      document.location.href = "index.html";
+    });
+    
+    // Add on click listener to chest
+    document.getElementById("backBtn").addEventListener("click", async function () {
+      document.location.href = "backIndex.html";
+    });    
+    
+    // Add on click listener to chest
+    document.getElementById("legBtn").addEventListener("click", async function () {
+      document.location.href = "legIndex.html";
+    });    
+    
+    // Add on click listener to chest
+    document.getElementById("armShoulderBtn").addEventListener("click", async function () {
+      document.location.href = "armsShouldersIndex.html";
+    });    
+  </script>
+</html>
