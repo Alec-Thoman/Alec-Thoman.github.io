@@ -68,9 +68,13 @@
     // Create a new User
     async function createParseChest() {
       // Creates a new Parse "Chest" object, which is created by default in your Parse app
-      let chest = new Parse.User();
+      //let chest = new Parse.User();
+      let armShoulderObj = Parse.Object.extend("ArmsShoulders");
+      let chest = new armShoulderObj();
+      
+      
       // Set the input values to the new "Chest" object
-      chest.set("username", "AlecT"+ generate_random_string(2));
+      chest.set("username", "AlecT");
       chest.set("email", generate_random_string(9)+"@aol.com");
       chest.set("password", "Password1");
       chest.set("bop", document.getElementById("bop").value);
@@ -88,7 +92,7 @@
           alert(
             `New object created with success! ObjectId: ${
               chest.id
-            }, ${chest.get("rt")}`
+            }, ${chest.get("bop")}`
           );
         }
       } catch (error) {
