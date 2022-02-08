@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- This is the minified production version of parse js -->
+<script
+    type="text/javascript"
+    src="https://npmcdn.com/parse/dist/parse.min.js"
+></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.menu {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+.menu a {
+  background-color: #e5e5e5;
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+.main {
+  float: left;
+  width: 60%;
+  padding: 0 20px;
+}
+
+.right {
+  background-color: #e5e5e5;
+  float: left;
+  width: 20%;
+  padding: 15px;
+  margin-top: 7px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+</style>
+<style>
+    .button {
+        background-color: #ffa500;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+</style>
+</head>
+<body style="font-family:Verdana;color:#aaaaaa;">
+
+<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
+  <h1>Alec's Gym App</h1>
+</div>
+
+<div style="overflow:auto">
+  <div class="menu">
+    <button class="button" id="chestBtn">Chest Day</button>
+    <button class="button" id="backBtn">Back Day</button>
+    <button class="button" id="legBtn">Leg Day</button>
+    <button class="button" id="armShoulderBtn">Arm/Shoulder Day</button>
+  </div>
+
+  <div class="main">
+    <h2>Click what gym day it is!</h2>
+    <p>Welcome to my gym app! Have a good workout and don't forget to log everything in here!</p>
+  </div>
+
+  <div class="right">
+    <h2>About</h2>
+    <p>I am Alec Thoman. I am the developer of this web app!</p>
+  </div>
+</div>
+
+<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright Alec Thoman</div>
+
+</body>
+<script>
+    
+    // Add on click listener to chest
+    document.getElementById("chestBtn").addEventListener("click", async function () {
+      document.location.href = "index.html";
+    });
+    
+    // Add on click listener to chest
+    document.getElementById("backBtn").addEventListener("click", async function () {
+      document.location.href = "backIndex.html";
+    });    
+    
+    // Add on click listener to chest
+    document.getElementById("legBtn").addEventListener("click", async function () {
+      document.location.href = "legIndex.html";
+    });    
+    
+    // Add on click listener to chest
+    document.getElementById("armShoulderBtn").addEventListener("click", async function () {
+      document.location.href = "armsShouldersIndex.html";
+    });    
+  </script>
+</html>
