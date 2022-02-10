@@ -93,6 +93,8 @@
     <br>
     <button class="button" id="backButton">Back</button>
     <button class="button" id="createButton">Submit Arm/Sho Day Data</button>
+      
+    <p id="demo" hidden="true"></p>
   </div>
 
   <div class="main">
@@ -143,6 +145,8 @@
       chest.set("cte", document.getElementById("cte").value);
       chest.set("cbc", document.getElementById("cbc").value);
       chest.set("tt", document.getElementById("tt").value);
+        
+      chest.set("curDate", document.getElementById("demo").value);
 
       try {
         // Call the save method, which returns the saved object if successful
@@ -162,7 +166,19 @@
 
     // Add on click listener to call the create parse user function
     document.getElementById("createButton").addEventListener("click", async function () {
-      createParseChest();
+      //createParseChest();
+      let text;
+      let date = prompt("Please enter today's date:", "00-00-0000");
+      if (text == null && date == null || date == "") {
+      //text = "User cancelled the prompt.";
+      } else {
+        text = date;
+        document.getElementById("demo").value = text; //or value here
+        console.log("WHAT IS THIS FUCKER " + document.getElementById("demo").value);
+
+        createParseChest();
+        
+     }
     });
     
      document.getElementById("backButton").addEventListener("click", async function () {
