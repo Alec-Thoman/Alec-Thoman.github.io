@@ -169,7 +169,12 @@
     // Add on click listener to call the create parse user function
     document.getElementById("createButton").addEventListener("click", async function () {
       let text;
-      let date = prompt("Please enter today's date:", "00-00-0000");
+      let dateObj = new Date();
+      let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      let day = String(dateObj.getDate()).padStart(2, '0');
+      let year = dateObj.getFullYear();
+      let dateToday = month + '-' + day + '-' + year; 
+      let date = prompt("Please enter today's date:", dateToday);
       if (text == null && date == null || date == "") {
       //text = "User cancelled the prompt.";
       } else {
