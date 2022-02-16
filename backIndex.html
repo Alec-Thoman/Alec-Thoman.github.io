@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- This is the minified production version of parse js -->
+<script
+    type="text/javascript"
+    src="https://npmcdn.com/parse/dist/parse.min.js"
+></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.menu {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+.menu a {
+  background-color: #e5e5e5;
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+.main {
+  float: left;
+  width: 60%;
+  padding: 0 20px;
+}
+
+.right {
+  background-color: #e5e5e5;
+  float: left;
+  width: 20%;
+  padding: 15px;
+  margin-top: 7px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+</style>
+<style>
+    .button {
+        background-color: #ffa500;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+</style>
+<style>
+  table, th, td {
+    border:1px solid black;
+  }
+  </style>
+</head>
+<body style="font-family:Verdana;color:#aaaaaa;">
+
+<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
+  <h1>BACK DAY</h1>
+</div>
+
+<div style="overflow:auto">
+  <div class="menu">
+    <input id="lp" type="text" placeholder="Enter lat pulldown" />
+    <label for="lp">(4-8) Old: 60/60/50</label><br>
+    <br>
+    <input id="udr" type="text" placeholder="Enter unilateral dumbbell row" />
+    <label for="udr">(3-10) Old: 40/40/40</label><br>
+    <br>
+    <input id="scb" type="text" placeholder="Enter seated cable row" />
+    <label for="scb">(3-10) Old: (Dual) 42.5/42.5/42.5</label><br>
+    <br>
+    <input id="hc" type="text" placeholder="Enter hammer curl" />
+    <label for="hc">(4-8) Old: 25/25/30/30</label><br>
+    <br>
+    <input id="idc" type="text" placeholder="Enter incline bench curl" />
+    <label for="idc">(3-12) Old: (20) Did alts; 2 sets bi curl (30, 27.5), 2 sets bi pulley (35/30)</label><br>
+    <br>
+    <input id="cfp" type="text" placeholder="Enter cable face pull" />
+    <label for="cfp">(3-12) Old: 35/40/40</label><br>
+    <br>
+    <input id="rt" type="text" placeholder="Enter russian twist" />
+    <label for="rt">(3-15) Old: </label><br>
+    <br>
+    <button class="button" id="backButton">Back</button>
+    <button class="button" id="createButton">Submit Back Day Data</button>
+
+    <p id="demo" hidden="true"></p>
+
+  </div>
+
+  <div class="main">
+    <button class="button" id="prevButton">Previous</button>
+    <h2>Welcome to back day! Let's get it!!</h2>
+    <p>Don't forget to enter in back workout reps!</p>
+  </div>
+
+  <!-- <div class="right">
+    <h2>About</h2>
+    <p>I am Alec Thoman. I am the developer of this web app!</p>
+  </div> -->
+</div>
+
+<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright Alec Thoman</div>
+
+</body>
+<script>
+    // Initialize Parse
+    Parse.initialize('bEs0Pjne8x372x0E0M0en8771zlDpSIonfYJmix8','rLXvVMcex8RmiLqroSkW0IMN6h1OlW8J5HOj0KpL'); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+    Parse.serverURL = "https://parseapi.back4app.com/";
+
+    function generate_random_string(string_length){
+      let random_string = '';
+      let random_ascii;
+      for(let i = 0; i < string_length; i++) {
+        random_ascii = Math.floor((Math.random() * 25) + 97);
+        random_string += String.fromCharCode(random_ascii);
+      }
+      return random_string;
+    }
+
+
+    //TESTING THIS NEW IMP *******
+           //document.getElementById("lp").value = back.get("lp");
+    document.getElementById("lp-label").value = "TESTER";
+
+
+    // Create a new User
+    async function createParseChest() {
+      // Creates a new Parse "Chest" object, which is created by default in your Parse app
+      //let chest = new Parse.User();
+      let backObj = Parse.Object.extend("Back");
+      let chest = new backObj();
+      // Set the input values to the new "Back" object
+      //chest.set("username", "AlecT"+ generate_random_string(2));
+      chest.set("username", "AlecT");
+      chest.set("email", generate_random_string(9)+"@aol.com");
+      chest.set("password", "Password1");
+      chest.set("lp", document.getElementById("lp").value);
+      chest.set("udr", document.getElementById("udr").value);
+      chest.set("scb", document.getElementById("scb").value);
+      chest.set("hc", document.getElementById("hc").value);
+      chest.set("idc", document.getElementById("idc").value);
+      chest.set("cfp", document.getElementById("cfp").value);
+      chest.set("rt", document.getElementById("rt").value);
+
+      chest.set("curDate", document.getElementById("demo").value);
+
+      try {
+        // Call the save method, which returns the saved object if successful
+        chest = await chest.save();
+        if (chest !== null) {
+          // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+          alert(
+            `New object created with success! ObjectId: ${
+              chest.id
+            }, ${chest.get("rt")}`
+          );
+        }
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    }
+
+    // Add on click listener to call the create parse user function
+    document.getElementById("createButton").addEventListener("click", async function () {
+      let text;
+      let dateObj = new Date();
+      let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      let day = String(dateObj.getDate()).padStart(2, '0');
+      let year = dateObj.getFullYear();
+      let dateToday = month + '-' + day + '-' + year; 
+      let date = prompt("Please enter today's date:", dateToday);
+      if (text == null && date == null || date == "") {
+      //text = "User cancelled the prompt.";
+      } else {
+        text = date;
+        document.getElementById("demo").value = text; //or value here
+        console.log("WHAT IS THIS FUCKER " + document.getElementById("demo").value);
+
+        createParseChest();
+        
+     }
+    });
+
+     document.getElementById("backButton").addEventListener("click", async function () {
+      document.location.href = "LandingPage.html";
+    });
+</script>
+<script src="backbundle.js" onclick="document.getElementById('createButton')"></script>
+</html>
