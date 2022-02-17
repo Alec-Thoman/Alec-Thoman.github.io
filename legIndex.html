@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- This is the minified production version of parse js -->
+<script
+    type="text/javascript"
+    src="https://npmcdn.com/parse/dist/parse.min.js"
+></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.menu {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+.menu a {
+  background-color: #e5e5e5;
+  padding: 8px;
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+.main {
+  float: left;
+  width: 60%;
+  padding: 0 20px;
+}
+
+.right {
+  background-color: #e5e5e5;
+  float: left;
+  width: 20%;
+  padding: 15px;
+  margin-top: 7px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+</style>
+<style>
+    .button {
+        background-color: #ffa500;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+</style>
+</head>
+<body style="font-family:Verdana;color:#aaaaaa;">
+
+<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
+  <h1>LEG DAY</h1>
+</div>
+
+<div style="overflow:auto">
+  <div class="menu">
+    <input id="dgs" type="text" placeholder="(5-5)Enter dumbbell goblet squat" />
+    <br>
+    <input id="nlc" type="text" placeholder="(3-10)Enter nordic leg curl" />
+    <br>
+    <input id="dss" type="text" placeholder="(4-8)Enter dumbbell split squat" />
+    <br>
+    <input id="mlc" type="text" placeholder="(3-12)Enter machine leg curl" />
+    <br>
+    <input id="mle" type="text" placeholder="(3-12)Enter machine leg extension" />
+    <br>
+    <input id="mcr" type="text" placeholder="(3-12)Enter machine calf raise" />
+    <br>
+    <button class="button" id="backButton">Back</button>
+    <button class="button" id="createButton">Submit Leg Day Data</button>
+
+    <p id="demo" hidden="true"></p>
+  </div>
+
+  <div class="main">
+    <button class="button" id="prevButton">Previous</button>
+    <h2>Welcome to leg day! Let's get it!!</h2>
+    <p>Don't forget to enter in leg workout reps!</p>
+  </div>
+
+  <!-- <div class="right">
+    <h2>About</h2>
+    <p>I am Alec Thoman. I am the developer of this web app!</p>
+  </div> -->
+</div>
+
+<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright Alec Thoman</div>
+
+</body>
+<script>
+    const dates = [];
+    var maxDate = "";
+    var year = "";
+    var month = "";
+    var day = "";
+    var y = "";
+    var m = "";
+    var d = "";
+    // Initialize Parse
+    Parse.initialize('bEs0Pjne8x372x0E0M0en8771zlDpSIonfYJmix8','rLXvVMcex8RmiLqroSkW0IMN6h1OlW8J5HOj0KpL'); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+    Parse.serverURL = "https://parseapi.back4app.com/";
+    
+    function generate_random_string(string_length){
+      let random_string = '';
+      let random_ascii;
+      for(let i = 0; i < string_length; i++) {
+        random_ascii = Math.floor((Math.random() * 25) + 97);
+        random_string += String.fromCharCode(random_ascii);
+      }
+      return random_string;
+    }
+    
+
+    // Create a new User
+    async function createParseChest() {
+      // Creates a new Parse "Chest" object, which is created by default in your Parse app
+      //let chest = new Parse.User();
+      let legObj = Parse.Object.extend("Legs");
+      let chest = new legObj();
+
+
+      // Set the input values to the new "Chest" object
+      //chest.set("username", "AlecT"+ generate_random_string(2));
+      chest.set("username", "AlecT");
+      chest.set("email", generate_random_string(9)+"@aol.com");
+      chest.set("password", "Password1");
+      chest.set("dgs", document.getElementById("dgs").value);
+      chest.set("nlc", document.getElementById("nlc").value);
+      chest.set("dss", document.getElementById("dss").value);
+      chest.set("mlc", document.getElementById("mlc").value);
+      chest.set("mle", document.getElementById("mle").value);
+      chest.set("mcr", document.getElementById("mcr").value);
+
+      chest.set("curDate", document.getElementById("demo").value);
+
+      try {
+        // Call the save method, which returns the saved object if successful
+        chest = await chest.save();
+        if (chest !== null) {
+          // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+          alert(
+            `New object created with success! ObjectId: ${
+              chest.id
+            }, ${chest.get("dgs")}`
+          );
+        }
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    }
+
+    // Add on click listener to call the create parse user function
+    document.getElementById("createButton").addEventListener("click", async function () {
+      let text;
+      let date = prompt("Please enter today's date:", "00-00-0000");
+      if (text == null && date == null || date == "") {
+      //text = "User cancelled the prompt.";
+      } else {
+        text = date;
+        document.getElementById("demo").value = text; //or value here
+        console.log("WHAT IS THIS FUCKER " + document.getElementById("demo").value);
+
+        createParseChest();
+        
+     }
+    });
+
+    document.getElementById("prevButton").addEventListener("click", async function () {
+      let dateObj = new Date();
+      month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      day = String(dateObj.getDate()).padStart(2, '0');
+      year = dateObj.getFullYear();
+      let dateToday = month + '-' + day + '-' + year; 
+      Parse.initialize('bEs0Pjne8x372x0E0M0en8771zlDpSIonfYJmix8','rLXvVMcex8RmiLqroSkW0IMN6h1OlW8J5HOj0KpL'); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+      Parse.serverURL = "https://parseapi.back4app.com/";
+      var back = Parse.Object.extend("Legs");
+      query = new Parse.Query(back);
+      // query.equalTo("curDate", dateToday);
+
+      const GameScore = Parse.Object.extend("Legs");
+      const query2 = new Parse.Query(GameScore);
+      query2.select("curDate");
+      query2.find().then(function(results) {
+      // each of results will only have the selected fields available.
+      for (let i = 0; i < results.length; i++) {
+        dates.length = results.length; //making dates arr parallel to results arr
+        //let yr = results[i].str.slice(6)
+        let str = results[i].get("curDate");
+        y = str.slice(6);
+        m = str.slice(0, 2);
+        d = str.slice(3, 5);
+        let strDate = y+'-'+m+'-'+d;
+        //console.log(strDate);
+
+        //let date = new Date(strDate+'T17:14:00'+"Z");
+        //console.log(date);
+
+        dates[i] = new Date(strDate+'T17:14:00'+"Z");
+      }
+
+      
+      maxDate=new Date(Math.max.apply(null,dates));
+  
+      // console.log(maxDate.getUTCMonth() + 1); //1
+      // console.log(maxDate.getUTCFullYear()); //3
+      // console.log(maxDate.getUTCDate()); //2
+
+      //console.log(maxDate.getUTCMonth()+1 + '-' + maxDate.getUTCDate() + '-' + maxDate.getUTCFullYear());
+
+      var mDate = "";
+      var mo = maxDate.getUTCMonth()+1;
+      var da = maxDate.getUTCDate();
+      var ye = maxDate.getUTCFullYear();
+
+      // if (maxDate.getUTCMonth()+1 <= 9) {
+      //   mDate = (String(0) + String(mo)) + '-' + String(da) + '-' + String(ye);
+      //   console.log(mDate);
+      // } else {
+      //   mDate = String(maxDate.getUTCMonth()+1 + '-' + maxDate.getUTCDate() + '-' + maxDate.getUTCFullYear());
+      //   console.log('na');
+      // }
+
+      if (maxDate.getUTCMonth()+1 <= 9) {
+        mo = String(0) + String(mo);
+      } else {
+        mo = String(mo);
+      }
+
+      if (maxDate.getUTCDate() <= 9) {
+        da = String(0) + String(da);
+      } else {
+        da = String(da);
+      }
+
+      mDate = mo + '-' + da + '-' + String(ye);
+
+      //query.equalTo("curDate", '02-15-2022');
+      query.equalTo("curDate", mDate);
+     
+      query.first().then(function(back){
+       if(back){
+         alert(
+           'PREVIOUS DATA' + '\n'+
+           'Dumbbell Goblet Squat: ' + back.get("dgs") +'\n'+
+           'Nordic Leg Curl: ' + back.get("nlc") + '\n'+
+           'Dumbbell Split Squat: ' + back.get("dss") + '\n'+
+           'Machine Leg Curl: ' + back.get("mlc") + '\n'+
+           'Machine Leg Extension: ' + back.get("mle") + '\n'+
+           'Machine Calf Raise: ' + back.get("mcr") + '\n'
+         );
+
+       } else {
+          console.log("Nothing found, please try again");
+          //e2.value = "DAMN";
+       }
+   }).catch(function(error){
+       console.log("Error: " + error.code + " " + error.message);
+   });      
+
+      });
+    });
+
+    document.getElementById("backButton").addEventListener("click", async function () {
+      document.location.href = "LandingPage.html";
+    });
+</script>
+<script src="legbundle.js" onclick="document.getElementById('createButton')"></script>
+</html>
