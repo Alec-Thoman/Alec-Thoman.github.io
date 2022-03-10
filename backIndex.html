@@ -256,13 +256,36 @@
       var da = maxDate.getUTCDate();
       var ye = maxDate.getUTCFullYear();
 
+//       if (maxDate.getUTCMonth()+1 < 9) {
+//         mDate = (String(0) + String(mo)) + '-' + String(da) + '-' + String(ye);
+//         console.log(mDate);
+//       } else {
+//         mDate = String(maxDate.getUTCMonth()+1 + '-' + maxDate.getUTCDate() + '-' + maxDate.getUTCFullYear());
+//         console.log('na');
+//       }
+          
+      //03-09-2022 BUG FIX
+      var mon = "";
+      var dy = "";
+      
+      // double digit months
       if (maxDate.getUTCMonth()+1 < 9) {
-        mDate = (String(0) + String(mo)) + '-' + String(da) + '-' + String(ye);
-        console.log(mDate);
+        mon = String(0) + String(mo);
       } else {
-        mDate = String(maxDate.getUTCMonth()+1 + '-' + maxDate.getUTCDate() + '-' + maxDate.getUTCFullYear());
-        console.log('na');
+        mon = String(mo);
       }
+
+      // double digit days
+      if (maxDate.getUTCDate() < 10) {
+        dy = String(0) + String(da);
+      } else {
+        dy = String(da);
+      }
+
+      mDate = mon + '-' + dy + '-' + String(ye);
+
+      // bug additions stop here
+      
 
       //query.equalTo("curDate", '02-15-2022');
       query.equalTo("curDate", mDate);
