@@ -87,8 +87,6 @@
     <br>
     <button class="button" id="backButton">Back</button>
     <button class="button" id="createButton">Submit Chest Day Data</button>
-    <button class="button" id="addButton"> Add Workout</button>
-    <input id="yur" type="text" placeholder="testeroo" hidden=true/>
     <br>
     <p id="demo" hidden="true"></p>
   </div>
@@ -290,10 +288,6 @@
 
     document.getElementById("backButton").addEventListener("click", async function () {
       document.location.href = "LandingPage.html";
-    });
-
-    document.getElementById("addButton").addEventListener("click", async function() {
-      document.getElementById("yur").hidden = false;
     });
 </script>
 <script src="bundle.js" onclick="document.getElementById('createButton')"></script>
