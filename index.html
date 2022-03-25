@@ -227,7 +227,17 @@ input:checked + .slider:before {
       chest.set("sc", document.getElementById("sc").value);
       chest.set("tp", document.getElementById("tp").value);
       // chest.set("scr", document.getElementById("scr").value);
-      chest.set("scr", document.getElementById("scrcb").value);
+
+      var scrcb = ""
+      if (document.getElementById("scrcb").value == 'on') {
+        scrcb = "Done";
+      } else {
+        scrcb = "Incomplete";
+      }
+      chest.set("scr", scrcb);
+
+      
+      // chest.set("scr", document.getElementById("scrcb").value);
 
       chest.set("curDate", document.getElementById("demo").value);
 
