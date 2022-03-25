@@ -152,7 +152,7 @@ input:checked + .slider:before {
     <label>(3-12) Suitcase Crunches done? </label>
     <!-- Rounded switch -->
     <label class="switch">
-    <input type="checkbox">
+    <input id="scrcb" type="checkbox">
     <span class="slider round"></span>
     </label>
 
@@ -226,7 +226,8 @@ input:checked + .slider:before {
       chest.set("mcf", document.getElementById("mcf").value);
       chest.set("sc", document.getElementById("sc").value);
       chest.set("tp", document.getElementById("tp").value);
-      chest.set("scr", document.getElementById("scr").value);
+      // chest.set("scr", document.getElementById("scr").value);
+      chest.set("scr", document.getElementById("scrcb").value);
 
       chest.set("curDate", document.getElementById("demo").value);
 
