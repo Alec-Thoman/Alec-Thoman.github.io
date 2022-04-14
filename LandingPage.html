@@ -93,7 +93,7 @@
   <div class="right">
     <h2>About</h2>
     <p>I am Alec Thoman. I am the developer of this web app!</p>
-    <button class="button" id="dataButton"><i class="fa fa-home"></i></button>
+    <button class="button" id="dataButton"><i class="fa fa-bitbucket"></i></button>
   </div>
 </div>
 
@@ -121,5 +121,10 @@
     document.getElementById("armShoulderBtn").addEventListener("click", async function () {
       document.location.href = "armsShouldersIndex.html";
     });    
+    
+    //Add on click listener to data button
+    document.getElementById("dataButton").addEventListener("click", async function () {
+        document.location.href = "https://parse-dashboard.back4app.com/apps/79a2fd73-d572-4597-803e-bdc1267b47a3/browser/Back";
+    });
   </script>
 </html>
