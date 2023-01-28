@@ -76,14 +76,15 @@
 </div>
 
 <div style="overflow:auto">
-  <div class="menu">
-    <button class="button" id="chestBtn"><i class="fa fa-contao"></i></button>
-    <button class="button" id="backBtn"><i class="fa fa-btc"></i></button>
-    <button class="button" id="legBtn"><i class="fa fa-linode"></i></button>
-    <button class="button" id="armShoulderBtn"><i class="fa fa-buysellads"></i></button>
+    <div class="menu">
+        <button class="button" id="day1"><i class="fa fa-contao"></i></button>
+        <button class="button" id="day2"><i class="fa fa-btc"></i></button>
+        <button class="button" id="day3"><i class="fa fa-linode"></i></button>
+        <button class="button" id="day4"><i class="fa fa-buysellads"></i></button>
+        <button class="button" id="day5"><i class="fa fa-buysellads"></i></button>
 
-    <!-- <button class="button" id="backButton"><i class="fa fa-home"></i></button> -->
-  </div>
+        <!-- <button class="button" id="backButton"><i class="fa fa-home"></i></button> -->
+    </div>
 
   <div class="main">
     <h2>Click what gym day it is!</h2>
@@ -103,24 +104,29 @@
 <script>
     
     // Add on click listener to chest
-    document.getElementById("chestBtn").addEventListener("click", async function () {
+    document.getElementById("day1").addEventListener("click", async function () {
       document.location.href = "index.html";
     });
     
     // Add on click listener to chest
-    document.getElementById("backBtn").addEventListener("click", async function () {
+    document.getElementById("day2").addEventListener("click", async function () {
       document.location.href = "backIndex.html";
     });    
     
     // Add on click listener to chest
-    document.getElementById("legBtn").addEventListener("click", async function () {
+    document.getElementById("day3").addEventListener("click", async function () {
       document.location.href = "legIndex.html";
     });    
     
     // Add on click listener to chest
-    document.getElementById("armShoulderBtn").addEventListener("click", async function () {
+    document.getElementById("day4").addEventListener("click", async function () {
       document.location.href = "armsShouldersIndex.html";
-    });    
+    });
+
+    // Add on click listener to chest
+    document.getElementById("day5").addEventListener("click", async function () {
+        document.location.href = "armsShouldersIndex.html";
+    });
     
     //Add on click listener to data button
     document.getElementById("dataButton").addEventListener("click", async function () {

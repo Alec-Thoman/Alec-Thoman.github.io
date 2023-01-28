@@ -133,48 +133,43 @@ input:checked + .slider:before {
 <body style="font-family:Verdana;color:#aaaaaa;">
 
 <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
-  <h1>CHEST DAY</h1>
+  <h1>GYM DAY #1</h1>
 </div>
 
 <div style="overflow:auto">
-  <div class="menu">
-    <input id="bbp" type="text" placeholder="(4-8)Enter barbell bench press" />
-    <br>
-    <input id="ibp" type="text" placeholder="(3-10)Enter incline bench press" />
-    <br>
-    <input id="mcf" type="text" placeholder="(3-12)Enter machine chest fly" />
-    <br>
-    <input id="sc" type="text" placeholder="(4-8)Enter skull crusher" />
-    <br>
-    <input id="tp" type="text" placeholder="(3-12)Enter tricep pushdown" />
-    <br>
-    <input id="scr" type="text" placeholder="(3-12)Enter suitcase crunch" />
-    <!-- <label>(3-12) Suitcase Crunches done? </label> -->
-    <!-- Rounded switch -->
-    <!-- <label class="switch">
-    <input id="scrcb" type="checkbox">
-    <span class="slider round"></span>
-    </label> -->
-
-
-
-
-    <br>
-<!--     <button class="button" id="backButton">Home</button> -->
-    <button class="button" id="backButton"><i class="fa fa-home"></i></button>
-    <button class="button" id="prevButton"><i class="fa fa-reply-all"></i></button>
-<!--     <button class="button" id="backButton"><i class="fa fa-home"></i></button> -->
-<!--     <button class="button" id="createButton">Submit Chest Day Data</button> -->
-    <button class="button" id="createButton"><i class="fa fa-paper-plane"></i></button>
-    <br>
-    <p id="demo" hidden="true"></p>
-  </div>
+    <div class="menu">
+        <input id="bbs" type="text" placeholder="(3-5)Enter barbell back squat" />
+        <br>
+        <input id="brd" type="text" placeholder="(3-8)Enter barbell romanian deadlift" />
+        <br>
+        <input id="mhs" type="text" placeholder="(3-10)Enter machine hack squat" />
+        <br>
+        <input id="mlc" type="text" placeholder="(3-10)Enter machine standing leg curl" />
+        <br>
+        <input id="mle" type="text" placeholder="(3-12)Enter machine leg extension" />
+        <br>
+        <input id="mha" type="text" placeholder="(3-12)Enter machine hip abduction" />
+        <br>
+        <input id="mac" type="text" placeholder="(3-12)Machine Ab Crunch" />
+        <br>
+        <input id="mce" type="text" placeholder="(3-12)Machine Calf Extension" />
+        <br />
+   
+        <!--     <button class="button" id="backButton">Home</button> -->
+        <button class="button" id="backButton"><i class="fa fa-home"></i></button>
+        <button class="button" id="prevButton"><i class="fa fa-reply-all"></i></button>
+        <!--     <button class="button" id="backButton"><i class="fa fa-home"></i></button> -->
+        <!--     <button class="button" id="createButton">Submit Chest Day Data</button> -->
+        <button class="button" id="createButton"><i class="fa fa-paper-plane"></i></button>
+        <br>
+        <p id="demo" hidden="true"></p>
+    </div>
 
   <div class="main">
 <!--     <button class="button" id="prevButton">Previous Data</button> -->
 <!--        <button class="button" id="prevButton"><i class="fa fa-reply-all"></i></button> -->
-    <h2>Welcome to chest day! Let's get it!!</h2>
-    <p>Don't forget to enter in chest workout reps!</p>
+    <h2>Welcome to gym day 1! Let's get it!!</h2>
+    <p>Don't forget to enter in workout reps!</p>
   </div>
 
   <!-- <div class="right">
@@ -213,7 +208,7 @@ input:checked + .slider:before {
     async function createParseChest() {
       // Creates a new Parse "Chest" object, which is created by default in your Parse app
       //let chest = new Parse.User();
-      let chestObj = Parse.Object.extend("Chest");
+      let chestObj = Parse.Object.extend("Day1");
       let chest = new chestObj();
 
       // Set the input values to the new "Chest" object
@@ -221,12 +216,14 @@ input:checked + .slider:before {
       chest.set("username", "AlecT");
       chest.set("email", generate_random_string(9)+"@aol.com");
       chest.set("password", "Password1");
-      chest.set("bbp", document.getElementById("bbp").value);
-      chest.set("ibp", document.getElementById("ibp").value);
-      chest.set("mcf", document.getElementById("mcf").value);
-      chest.set("sc", document.getElementById("sc").value);
-      chest.set("tp", document.getElementById("tp").value);
-      chest.set("scr", document.getElementById("scr").value);
+      chest.set("bbs", document.getElementById("bbs").value);
+      chest.set("brd", document.getElementById("brd").value);
+      chest.set("mhs", document.getElementById("mhs").value);
+      chest.set("mlc", document.getElementById("mlc").value);
+      chest.set("mle", document.getElementById("mle").value);
+      chest.set("mha", document.getElementById("mha").value);
+      chest.set("mac", document.getElementById("mac").value);
+      chest.set("mce", document.getElementById("mce").value);
 
 
       // chest.set("scr", document.getElementById("scrcb").value);
@@ -241,7 +238,7 @@ input:checked + .slider:before {
           alert(
             `New object created with success! ObjectId: ${
               chest.id
-            }, ${chest.get("bbp")}`
+            }, ${chest.get("bbs")}`
           );
         }
       } catch (error) {
@@ -281,11 +278,11 @@ input:checked + .slider:before {
       let dateToday = month + '-' + day + '-' + year; 
       Parse.initialize('bEs0Pjne8x372x0E0M0en8771zlDpSIonfYJmix8','rLXvVMcex8RmiLqroSkW0IMN6h1OlW8J5HOj0KpL'); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
       Parse.serverURL = "https://parseapi.back4app.com/";
-      var back = Parse.Object.extend("Chest");
+      var back = Parse.Object.extend("Day1");
       query = new Parse.Query(back);
       // query.equalTo("curDate", dateToday);
 
-      const GameScore = Parse.Object.extend("Chest");
+      const GameScore = Parse.Object.extend("Day1");
       const query2 = new Parse.Query(GameScore);
       query2.select("curDate");
       query2.find().then(function(results) {
@@ -349,12 +346,14 @@ input:checked + .slider:before {
        if(back){
          alert(
            'PREVIOUS DATA' + '\n'+
-           'Barbell Bench Press: ' + back.get("bbp") +'\n'+
-           'Incline Bench Press: ' + back.get("ibp") + '\n'+
-           'Machine Chest Fly: ' + back.get("mcf") + '\n'+
-           'Skull Crusher: ' + back.get("sc") + '\n'+
-           'Tricep Pushdown: ' + back.get("tp") + '\n'+
-           'Suitcase Crunch: ' + back.get("scr") + '\n'
+           'Barbell Back Squat: ' + back.get("bbs") +'\n'+
+           'Barbell Romanian Deadlift: ' + back.get("brd") + '\n'+
+           'Machine Hack Squat: ' + back.get("mhs") + '\n'+
+           'Machine Standing Leg Curl: ' + back.get("mlc") + '\n'+
+           'Machine Leg Extension: ' + back.get("mle") + '\n'+
+           'Machine Hib Abduction: ' + back.get("mha") + '\n' +
+           'Machine Ab Crunch: ' + back.get("mac") + '\n' +
+           'Machine Calf Extension: ' + back.get("mce")
          );
 
        } else {
