@@ -78,39 +78,41 @@
 <body style="font-family:Verdana;color:#aaaaaa;">
 
 <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
-  <h1>BACK DAY</h1>
+  <h1>GYM DAY #2</h1>
 </div>
 
 <div style="overflow:auto">
-  <div class="menu">
-    <input id="lp" type="text" placeholder="(3-10)Enter lat pulldown" />
-    <br>
-    <input id="udr" type="text" placeholder="(3-10)Enter unilateral dumbbell row" />
-    <br>
-    <input id="scb" type="text" placeholder="(3-10)Enter seated cable row" />
-    <br>
-    <input id="hc" type="text" placeholder="(4-8)Enter hammer curl" />
-    <br>
-    <input id="idc" type="text" placeholder="(3-12)Enter incline bench curl" />
-    <br>
-    <input id="cfp" type="text" placeholder="(3-12)Enter cable face pull" />
-    <br>
-    <input id="rt" type="text" placeholder="(3-15)Enter russian twist" />
-    <br>
-    <!-- <button class="button" id="backButton">Back</button>
+    <div class="menu">
+        <input id="bbp" type="text" placeholder="(3-5)Enter barbell flat bench press" />
+        <br>
+        <input id="dib" type="text" placeholder="(3-8)Enter dumbbell incline bench press" />
+        <br>
+        <input id="msp" type="text" placeholder="(3-10)Enter machine shoulder press" />
+        <br>
+        <input id="mlr" type="text" placeholder="(3-10)Enter machnine lateral raise" />
+        <br>
+        <input id="mf" type="text" placeholder="(3-12)Enter machine fly" />
+        <br>
+        <input id="cte" type="text" placeholder="(3-12)Enter cable overhead triceps extension" />
+        <br>
+        <input id="pu" type="text" placeholder="(2-AMRAP)Enter body weight push-up" />
+        <br>
+        <input id="bwp" type="text" placeholder="(2-:90)Enter body weight plank" />
+        <br>
+        <!-- <button class="button" id="backButton">Back</button>
     <button class="button" id="createButton">Submit Back Day Data</button> -->
-    <button class="button" id="backButton"><i class="fa fa-home"></i></button>
-    <button class="button" id="prevButton"><i class="fa fa-reply-all"></i></button>
-    <button class="button" id="createButton"><i class="fa fa-paper-plane"></i></button>
+        <button class="button" id="backButton"><i class="fa fa-home"></i></button>
+        <button class="button" id="prevButton"><i class="fa fa-reply-all"></i></button>
+        <button class="button" id="createButton"><i class="fa fa-paper-plane"></i></button>
 
-    <p id="demo" hidden="true"></p>
+        <p id="demo" hidden="true"></p>
 
-  </div>
+    </div>
 
   <div class="main">
     <!-- <button class="button" id="prevButton">Previous</button> -->
-    <h2>Welcome to back day! Let's get it!!</h2>
-    <p>Don't forget to enter in back workout reps!</p>
+    <h2>Welcome to gym day 2! Let's get it!!</h2>
+    <p>Don't forget to enter in workout reps!</p>
   </div>
 
   <!-- <div class="right">
@@ -155,20 +157,21 @@
     async function createParseChest() {
       // Creates a new Parse "Chest" object, which is created by default in your Parse app
       //let chest = new Parse.User();
-      let backObj = Parse.Object.extend("Back");
+      let backObj = Parse.Object.extend("Day2");
       let chest = new backObj();
       // Set the input values to the new "Back" object
       //chest.set("username", "AlecT"+ generate_random_string(2));
       chest.set("username", "AlecT");
       chest.set("email", generate_random_string(9)+"@aol.com");
       chest.set("password", "Password1");
-      chest.set("lp", document.getElementById("lp").value);
-      chest.set("udr", document.getElementById("udr").value);
-      chest.set("scb", document.getElementById("scb").value);
-      chest.set("hc", document.getElementById("hc").value);
-      chest.set("idc", document.getElementById("idc").value);
-      chest.set("cfp", document.getElementById("cfp").value);
-      chest.set("rt", document.getElementById("rt").value);
+      chest.set("bbp", document.getElementById("bbp").value);
+      chest.set("dib", document.getElementById("dib").value);
+      chest.set("msp", document.getElementById("msp").value);
+      chest.set("mlr", document.getElementById("mlr").value);
+      chest.set("mf", document.getElementById("mf").value);
+      chest.set("cte", document.getElementById("cte").value);
+      chest.set("pu", document.getElementById("pu").value);
+      chest.set("bwp", document.getElementById("bwp").value);
 
       chest.set("curDate", document.getElementById("demo").value);
 
@@ -225,11 +228,11 @@
       let dateToday = month + '-' + day + '-' + year; 
       Parse.initialize('bEs0Pjne8x372x0E0M0en8771zlDpSIonfYJmix8','rLXvVMcex8RmiLqroSkW0IMN6h1OlW8J5HOj0KpL'); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
       Parse.serverURL = "https://parseapi.back4app.com/";
-      var back = Parse.Object.extend("Back");
+      var back = Parse.Object.extend("Day2");
       query = new Parse.Query(back);
       // query.equalTo("curDate", dateToday);
 
-      const GameScore = Parse.Object.extend("Back");
+      const GameScore = Parse.Object.extend("Day2");
       const query2 = new Parse.Query(GameScore);
       query2.select("curDate");
       query2.find().then(function(results) {
@@ -302,13 +305,14 @@
        if(back){
          alert(
            'PREVIOUS DATA' + '\n'+
-           'Lat Pulldown: ' + back.get("lp") +'\n'+
-           'Unilateral Dumbbell Row: ' + back.get("udr") + '\n'+
-           'Seated Cable Row: ' + back.get("scb") + '\n'+
-           'Hammer Curl: ' + back.get("hc") + '\n'+
-           'Incline Bench Curl: ' + back.get("idc") + '\n'+
-           'Cable Face Pull: ' + back.get("cfp") + '\n'+
-           'Russian Twist: ' + back.get("rt")
+           'Barbell Flat Bench Press: ' + back.get("bbp") +'\n'+
+           'Dumbbell Incline Bench Press: ' + back.get("dib") + '\n'+
+           'Machine Shoulder Press: ' + back.get("msp") + '\n'+
+           'Machine Lateral Raise: ' + back.get("mlr") + '\n'+
+           'Machine Fly: ' + back.get("mf") + '\n'+
+           'Cable Overhead Triceps Extension: ' + back.get("cte") + '\n'+
+           'Body Weight Push-Up: ' + back.get("pu") + '\n' +
+           'Body Weight Plank: ' + back.get("bwp")
          );
 
        } else {
